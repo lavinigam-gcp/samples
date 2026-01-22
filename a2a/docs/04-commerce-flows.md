@@ -29,7 +29,7 @@ Without this intermediate state, you'd risk creating orders with missing shippin
 ## Checkout State Machine
 
 <div align="center">
-  <img src="../assets/diagrams/04_01_checkout_state_machine.png" alt="Checkout State Machine" width="800">
+  <img src="../assets/diagrams/04_01_checkout_state_machine.webp" alt="Checkout State Machine" width="800">
   <p><em>Figure 1: Checkout state machine showing the 3 states — incomplete (cart mode), ready_for_complete (validation gate), and completed (finalized). Transitions are triggered by tool calls: add_to_checkout(), start_payment(), and complete_checkout().</em></p>
 </div>
 
@@ -97,7 +97,7 @@ Without this intermediate state, you'd risk creating orders with missing shippin
 ## Payment Flow
 
 <div align="center">
-  <img src="../assets/diagrams/04_02_payment_flow.png" alt="Payment Flow Sequence Diagram" width="800">
+  <img src="../assets/diagrams/04_02_payment_flow.webp" alt="Payment Flow Sequence Diagram" width="800">
   <p><em>Figure 2: End-to-end payment flow showing 3 phases — Payment Method Selection (UI ↔ CredentialProviderProxy), Get Payment Token, and Complete Checkout (UI → A2A Server → ADK Agent → MockPaymentProcessor). The agent calls place_order() after payment validation.</em></p>
 </div>
 

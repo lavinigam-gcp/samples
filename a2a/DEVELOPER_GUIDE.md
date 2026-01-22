@@ -35,7 +35,7 @@ Choose your path based on your goal:
 ## Architecture
 
 <div align="center">
-  <img src="assets/diagrams/00_01_architecture_overview.png" alt="Cymbal Retail Agent Architecture" width="800">
+  <img src="assets/diagrams/00_01_architecture_overview.webp" alt="Cymbal Retail Agent Architecture" width="800">
   <p><em>System architecture — Chat Client (React + A2A Client) communicates via JSON-RPC to the Cymbal Retail Agent (A2A Server → ADKAgentExecutor → ADK Agent → RetailStore). Discovery endpoints expose agent capabilities and UCP profile.</em></p>
 </div>
 

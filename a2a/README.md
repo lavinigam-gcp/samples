@@ -39,7 +39,7 @@ The sample uses **[Google ADK](https://google.github.io/adk-docs/)** (Agent Deve
 <b>Complete Shopping Flow</b><br/>
 <i>Product search → Add items to Checkout → Payment → Order confirmation</i>
 <br/><br/>
-<img src="assets/ucp_a2a_demo.gif" alt="UCP A2A Demo" width="800" />
+<video src="assets/ucp_a2a_demo.mp4" alt="UCP A2A Demo" width="800" autoplay loop muted playsinline></video>
 <br/><br/>
 <a href="https://github.com/user-attachments/assets/8d3d17f5-dbcc-4cc8-91b9-2b7d48b3f2df">▶️ Watch the full demo video</a>
 </p>
@@ -50,7 +50,7 @@ The sample uses **[Google ADK](https://google.github.io/adk-docs/)** (Agent Deve
 <b>System Architecture</b><br/>
 <i>How Client, A2A Protocol, Cymbal Retail Agent, and Store interact</i>
 <br/><br/>
-<img src="assets/architecture_diagram.jpeg" alt="Architecture Diagram" width="900" />
+<img src="assets/architecture_diagram.webp" alt="Architecture Diagram" width="900" />
 </p>
 
 **Key points:**
@@ -103,13 +103,13 @@ This starts the Cymbal Retail Agent on port 10999. You can verify by accessing:
 <td width="50%" align="center">
 <b>Agent Card</b><br/><code>/.well-known/agent-card.json</code>
 <br/><br/>
-<img src="assets/agent_card.png" alt="Agent Card" width="400" />
+<img src="assets/agent_card.webp" alt="Agent Card" width="400" />
 <br/><i>Declares UCP extension with capabilities</i>
 </td>
 <td width="50%" align="center">
 <b>UCP Profile</b><br/><code>/.well-known/ucp</code>
 <br/><br/>
-<img src="assets/well_known.png" alt="UCP Profile" width="400" />
+<img src="assets/well_known.webp" alt="UCP Profile" width="400" />
 <br/><i>Defines supported capabilities & payment handlers</i>
 </td>
 </tr>
@@ -139,7 +139,7 @@ The Chat Client UCP Profile can be found at http://localhost:3000/profile/agent-
 <table>
 <tr>
 <td width="50%" align="center">
-<img src="assets/ucp_a2a_demo.gif" alt="Demo" width="400" />
+<video src="assets/ucp_a2a_demo.mp4" alt="Demo" width="400" autoplay loop muted playsinline></video>
 <br/><a href="https://github.com/user-attachments/assets/8d3d17f5-dbcc-4cc8-91b9-2b7d48b3f2df">▶️ Watch full video</a>
 </td>
 <td width="50%" valign="top">

@@ -75,7 +75,7 @@ def tool_function(tool_context: ToolContext, param: str) -> dict:
 ## Tool Execution Flow
 
 <div align="center">
-  <img src="../assets/diagrams/02_01_tool_execution_flow.png" alt="ADK Tool Execution Flow" width="800">
+  <img src="../assets/diagrams/02_01_tool_execution_flow.webp" alt="ADK Tool Execution Flow" width="800">
   <p><em>Figure 1: Tool execution flow from user query through the ADK Agent (LLM + Tool Selection), Tool execution (ToolContext, State, Business Logic), to the data store (Products, Checkouts).</em></p>
 </div>
 
@@ -91,7 +91,7 @@ The flow illustrates how each tool invocation works:
 In a typical shopping session, multiple tools are called across turns:
 
 <div align="center">
-  <img src="../assets/diagrams/02_02_multi_tool_conversation.png" alt="Multi-Tool Shopping Conversation Flow" width="800">
+  <img src="../assets/diagrams/02_02_multi_tool_conversation.webp" alt="Multi-Tool Shopping Conversation Flow" width="800">
   <p><em>Figure 2: A complete shopping conversation showing 4 steps — product search, add to cart, customer details, and payment initiation. Each step involves tool execution and state updates.</em></p>
 </div>
 

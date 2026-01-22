@@ -94,7 +94,7 @@ This enables any UCP-compliant client to work with any UCP-compliant merchant.
 ## Capability Negotiation
 
 <div align="center">
-  <img src="../assets/diagrams/03_01_capability_negotiation.png" alt="UCP Capability Negotiation Flow" width="800">
+  <img src="../assets/diagrams/03_01_capability_negotiation.webp" alt="UCP Capability Negotiation Flow" width="800">
   <p><em>Figure 1: UCP capability negotiation flow — Chat Client sends request with UCP-Agent header, ProfileResolver fetches client profile, validates versions, finds common capabilities, and returns UcpMetadata for dynamic type generation.</em></p>
 </div>
 
@@ -140,7 +140,7 @@ def get_checkout_type(ucp_metadata: UcpMetadata) -> type[Checkout]:
 ### Type Hierarchy
 
 <div align="center">
-  <img src="../assets/diagrams/03_02_type_hierarchy.png" alt="UCP Checkout Type Hierarchy" width="800">
+  <img src="../assets/diagrams/03_02_type_hierarchy.webp" alt="UCP Checkout Type Hierarchy" width="800">
   <p><em>Figure 2: Checkout type hierarchy — Base Checkout class is extended by FulfillmentCheckout, BuyerConsentCheckout, and DiscountCheckout based on negotiated capabilities. The get_checkout_type() function dynamically combines these at runtime.</em></p>
 </div>
 

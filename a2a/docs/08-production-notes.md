@@ -14,7 +14,7 @@
 ## Architecture Limitations
 
 <div align="center">
-  <img src="../assets/diagrams/08_01_current_vs_production.png" alt="Current vs Production Architecture" width="900">
+  <img src="../assets/diagrams/08_01_current_vs_production.webp" alt="Current vs Production Architecture" width="900">
   <p><em>Figure 1: In-memory sample components vs production-ready replacements</em></p>
 </div>
 
@@ -40,7 +40,7 @@ These are lost on restart and have no concurrency protection.
 ## Security Gaps
 
 <div align="center">
-  <img src="../assets/diagrams/08_02_security_gaps.png" alt="Security Gaps Overview" width="900">
+  <img src="../assets/diagrams/08_02_security_gaps.webp" alt="Security Gaps Overview" width="900">
   <p><em>Figure 2: Four critical security vulnerabilities and their required fixes</em></p>
 </div>
 

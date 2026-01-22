@@ -9,7 +9,7 @@
 ## System Overview
 
 <div align="center">
-  <img src="../assets/diagrams/01_01_system_overview.png" alt="Cymbal Retail Agent System Architecture" width="800">
+  <img src="../assets/diagrams/01_01_system_overview.webp" alt="Cymbal Retail Agent System Architecture" width="800">
   <p><em>Figure 1: System architecture showing the 4-layer structure — Chat Client (React), A2A Server, ADK Agent Layer, and Business Layer with their components and connections.</em></p>
 </div>
 
@@ -46,7 +46,7 @@ The architecture follows a clean separation of concerns:
 ## Request Flow
 
 <div align="center">
-  <img src="../assets/diagrams/01_02_request_flow.png" alt="Request Flow Sequence Diagram" width="800">
+  <img src="../assets/diagrams/01_02_request_flow.webp" alt="Request Flow Sequence Diagram" width="800">
   <p><em>Figure 2: Request flow from user query through A2A Server, Agent Executor, ADK Agent, to RetailStore and back. Shows the tool execution loop and callback processing.</em></p>
 </div>
 
@@ -81,7 +81,7 @@ The sample uses an in-memory mock store (`store.py`) to demonstrate UCP integrat
 ### Store Structure
 
 <div align="center">
-  <img src="../assets/diagrams/01_03_mock_store_structure.png" alt="Mock Store Architecture - What to Keep vs Replace" width="800">
+  <img src="../assets/diagrams/01_03_mock_store_structure.webp" alt="Mock Store Architecture - What to Keep vs Replace" width="800">
   <p><em>Figure 3: Mock store architecture showing the integration layer (keep), mock layer (replace), and your backend implementation. Solid arrows show current data flow; dashed arrows show migration paths.</em></p>
 </div>
 

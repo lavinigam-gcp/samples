@@ -9,7 +9,7 @@
 ## Which Extension Do You Need?
 
 <div align="center">
-  <img src="../assets/diagrams/06_01_extension_decision_tree.png" alt="Extension Decision Tree" width="800">
+  <img src="../assets/diagrams/06_01_extension_decision_tree.webp" alt="Extension Decision Tree" width="800">
   <p><em>Figure 1: Extension decision tree — Choose your path based on what you want to add. New products require only JSON edits, while new capabilities need profile updates, type generation, and tool handling.</em></p>
 </div>
 
@@ -109,7 +109,7 @@ def _get_fulfillment_options(self, address: PostalAddress) -> list:
 Every ADK tool follows this pattern:
 
 <div align="center">
-  <img src="../assets/diagrams/06_02_tool_architecture.png" alt="Tool Execution Pattern" width="800">
+  <img src="../assets/diagrams/06_02_tool_architecture.webp" alt="Tool Execution Pattern" width="800">
   <p><em>Figure 2: Tool execution pattern — User query flows through Agent → LLM (tool selection) → Tool (with ToolContext) → Store. Each tool follows: get state → validate → execute → return UCP response.</em></p>
 </div>
 
@@ -227,7 +227,7 @@ def get_recommendations(
 UCP capabilities let you extend checkout data in a standardized way. The client and merchant negotiate which capabilities they both support.
 
 <div align="center">
-  <img src="../assets/diagrams/06_03_capability_hierarchy.png" alt="Capability Extension Hierarchy" width="800">
+  <img src="../assets/diagrams/06_03_capability_hierarchy.webp" alt="Capability Extension Hierarchy" width="800">
   <p><em>Figure 3: Capability extension hierarchy — Base Checkout class extended by FulfillmentCheckout, DiscountCheckout (existing), and LoyaltyCheckout, WishlistCheckout (new capabilities you can add).</em></p>
 </div>
 
@@ -320,7 +320,7 @@ def move_to_checkout(tool_context: ToolContext, product_id: str) -> dict:
 ### Payment Flow with Custom Handler
 
 <div align="center">
-  <img src="../assets/diagrams/06_04_custom_payment_flow.png" alt="Custom Payment Flow" width="800">
+  <img src="../assets/diagrams/06_04_custom_payment_flow.webp" alt="Custom Payment Flow" width="800">
   <p><em>Figure 4: Custom payment flow — Replace CredentialProviderProxy with your payment provider and MockPaymentProcessor with your StripeProcessor (or other provider). Shows the complete flow from payment method selection through Stripe API to OrderConfirmation.</em></p>
 </div>
 

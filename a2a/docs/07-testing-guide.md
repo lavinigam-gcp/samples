@@ -9,7 +9,7 @@
 ## Setup Flow
 
 <div align="center">
-  <img src="../assets/diagrams/07_01_setup_flow.png" alt="Setup and Test Flow" width="800">
+  <img src="../assets/diagrams/07_01_setup_flow.webp" alt="Setup and Test Flow" width="800">
   <p><em>Figure 1: Setup and test flow — Start Backend (port 10999), then Frontend (port 3000), verify endpoints, then proceed to testing: Search Products → Add to Cart → Complete Payment.</em></p>
 </div>
 
@@ -82,7 +82,7 @@ curl -s http://localhost:3000/profile/agent_profile.json | jq .
 When something breaks, follow this systematic approach:
 
 <div align="center">
-  <img src="../assets/diagrams/07_02_debug_strategy.png" alt="Debug Strategy Decision Tree" width="800">
+  <img src="../assets/diagrams/07_02_debug_strategy.webp" alt="Debug Strategy Decision Tree" width="800">
   <p><em>Figure 2: Debug strategy decision tree — Systematically check backend, frontend, browser console, UCP-Agent header, and capability negotiation to isolate issues.</em></p>
 </div>
 

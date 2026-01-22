@@ -19,14 +19,14 @@ In production, you'd replace this with your actual payment SDK (Stripe, Adyen, e
 ## Request/Response Cycle
 
 <div align="center">
-  <img src="../assets/diagrams/05_01_request_response_cycle.png" alt="Frontend Request/Response Cycle" width="800">
+  <img src="../assets/diagrams/05_01_request_response_cycle.webp" alt="Frontend Request/Response Cycle" width="800">
   <p><em>Figure 1: Request/response cycle — React App sends POST /api with UCP-Agent header, Vite Proxy rewrites path and forwards to A2A Server at :10999, ADK Agent returns response with parts[] containing text and structured data (checkout, products).</em></p>
 </div>
 
 ## Component Hierarchy
 
 <div align="center">
-  <img src="../assets/diagrams/05_02_component_hierarchy.png" alt="React Component Hierarchy" width="800">
+  <img src="../assets/diagrams/05_02_component_hierarchy.webp" alt="React Component Hierarchy" width="800">
   <p><em>Figure 2: React component tree — App.tsx manages state and A2A messaging, with Header, ChatMessage, and ChatInput as children. ChatMessage contains UCP data components (green): ProductCard, Checkout, PaymentMethodSelector, and PaymentConfirmation.</em></p>
 </div>
 
