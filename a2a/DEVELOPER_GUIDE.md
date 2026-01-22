@@ -8,33 +8,10 @@
 
 ## Architecture
 
-```mermaid
-graph TB
-    subgraph Client["Chat Client :3000"]
-        UI[React UI]
-        A2A_C[A2A Client]
-    end
-
-    subgraph Server["Cymbal Retail Agent :10999"]
-        A2A_S[A2A Server]
-        Exec[ADKAgentExecutor]
-        Agent[ADK Agent<br/>Gemini 3.0 Flash]
-        Store[RetailStore]
-    end
-
-    subgraph Endpoints["Discovery"]
-        Card["/.well-known/agent-card.json"]
-        UCP["/.well-known/ucp"]
-    end
-
-    UI --> A2A_C
-    A2A_C -->|JSON-RPC| A2A_S
-    A2A_S --> Exec
-    Exec --> Agent
-    Agent -->|Tools| Store
-    A2A_S --> Card
-    A2A_S --> UCP
-```
+<div align="center">
+  <img src="assets/diagrams/00_01_architecture_overview.png" alt="Cymbal Retail Agent Architecture" width="800">
+  <p><em>System architecture — Chat Client (React + A2A Client) communicates via JSON-RPC to the Cymbal Retail Agent (A2A Server → ADKAgentExecutor → ADK Agent → RetailStore). Discovery endpoints expose agent capabilities and UCP profile.</em></p>
+</div>
 
 ## Quick Reference
 
