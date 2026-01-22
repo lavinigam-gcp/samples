@@ -158,6 +158,16 @@ The Chat Client UCP Profile can be found at http://localhost:3000/profile/agent-
 </tr>
 </table>
 
+## Next Steps
+
+Ready to understand how it works?
+
+| Goal | Resource |
+|------|----------|
+| **Understand the architecture** | [Developer Guide](DEVELOPER_GUIDE.md) |
+| **Deep dive into code** | [Architecture](docs/01-architecture.md) |
+| **Extend the sample** | [Extending Guide](docs/06-extending.md) |
+
 ## What is UCP?
 
 **Universal Commerce Protocol (UCP)** is an open standard that enables interoperability between commerce platforms, merchants, and payment providers. It provides standardized data types for commerce transactions.
@@ -176,40 +186,6 @@ This sample uses the following UCP capabilities:
 | **[Google ADK](https://google.github.io/adk-docs/)** | Agent Framework | AI agent with tools, Gemini LLM integration, session management |
 | **[A2A Protocol](https://a2a-protocol.org/latest/)** | Communication | Agent discovery via Agent Card, JSON-RPC messaging, task management |
 | **[UCP](https://ucp.dev)** | Commerce Standard | Standardized product, checkout, payment, and order data types |
-
-## Components
-
-### Cymbal Retail Agent (`business_agent/`)
-
-AI shopping assistant built with Google ADK, exposed via A2A interface with UCP extension.
-
-| File | Purpose |
-|------|---------|
-| `agent.py` | ADK Agent with Gemini 3.0 Flash + 8 shopping tools |
-| `agent_executor.py` | Bridges ADK ↔ A2A protocol |
-| `store.py` | Mock RetailStore (products, checkouts, orders) |
-| `data/ucp.json` | UCP Profile served at `/.well-known/ucp` |
-
-### Chat Client (`chat-client/`)
-
-React UI (TypeScript, Vite, Tailwind) that communicates via A2A and renders UCP data types.
-
-| File | Purpose |
-|------|---------|
-| `App.tsx` | A2A messaging + state management |
-| `components/` | ProductCard, Checkout, PaymentMethodSelector |
-| `profile/agent_profile.json` | Client's UCP capabilities |
-
-## Mock Store
-
-The Cymbal Retail Agent uses an in-memory `RetailStore` to simulate a real backend:
-
-- **Products** - Loaded from `data/products.json` (cookies, chips, fruits, etc.)
-- **Checkouts** - Session-based checkout management with line items
-- **Orders** - Created when checkout completes successfully
-- **Payments** - Mock processor simulates payment flow
-
-Prices are in USD, tax is calculated at 10%, and shipping costs vary by method.
 
 ## Related Resources
 

@@ -6,6 +6,18 @@
 - **UCP Integration** for standardized commerce data types and capability negotiation
 - **A2A Protocol** for agent discovery and JSON-RPC messaging
 
+## About This Guide
+
+This guide is for developers who want to understand how the sample works internally.
+
+**Prerequisites:** Complete the [Quick Start in README.md](README.md#quick-start) first.
+
+**What you'll learn:**
+- System architecture and component responsibilities
+- How UCP and A2A protocols integrate with ADK
+- The checkout state machine and commerce flows
+- How to extend and customize the sample
+
 ## Architecture
 
 <div align="center">
@@ -51,19 +63,3 @@
 | [Frontend](docs/05-frontend.md) | React components, A2A client |
 | [Extending](docs/06-extending.md) | Add tools, products, capabilities |
 | [Testing Guide](docs/07-testing-guide.md) | Testing, debugging, troubleshooting |
-
-## Quick Start
-
-```bash
-# Backend
-cd a2a/business_agent && uv sync && cp env.example .env
-# Add GOOGLE_API_KEY to .env
-uv run business_agent
-
-# Frontend (new terminal)
-cd a2a/chat-client && npm install && npm run dev
-
-# Open http://localhost:3000
-```
-
-See [README.md](README.md) for detailed setup instructions.
