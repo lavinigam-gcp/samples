@@ -1,0 +1,23 @@
+{
+  "categories": [
+    {"name": "Appetizers", "icon": "🥗"},
+    {"name": "Entrees", "icon": "🍽️"},
+    {"name": "Sides", "icon": "🍟"},
+    {"name": "Desserts", "icon": "🍰"},
+    {"name": "Drinks", "icon": "🥤"}
+  ],
+  "sample_products": [
+    {"id": "rest-001", "title": "Crispy Spring Rolls", "category": "Appetizers", "price": 899, "description": "Vegetable spring rolls with sweet chili sauce"},
+    {"id": "rest-002", "title": "Buffalo Wings", "category": "Appetizers", "price": 1199, "description": "Spicy chicken wings with ranch dip"},
+    {"id": "rest-003", "title": "Grilled Salmon", "category": "Entrees", "price": 2499, "description": "Atlantic salmon with lemon butter sauce"},
+    {"id": "rest-004", "title": "Ribeye Steak", "category": "Entrees", "price": 2999, "description": "12oz ribeye with garlic butter"},
+    {"id": "rest-005", "title": "Chicken Alfredo", "category": "Entrees", "price": 1799, "description": "Creamy fettuccine with grilled chicken"},
+    {"id": "rest-006", "title": "Caesar Salad", "category": "Entrees", "price": 1299, "description": "Romaine with parmesan and croutons"},
+    {"id": "rest-007", "title": "French Fries", "category": "Sides", "price": 399, "description": "Crispy golden fries with sea salt"},
+    {"id": "rest-008", "title": "Mashed Potatoes", "category": "Sides", "price": 499, "description": "Creamy garlic mashed potatoes"},
+    {"id": "rest-009", "title": "Chocolate Lava Cake", "category": "Desserts", "price": 799, "description": "Warm chocolate cake with molten center"},
+    {"id": "rest-010", "title": "New York Cheesecake", "category": "Desserts", "price": 699, "description": "Classic cheesecake with berry sauce"},
+    {"id": "rest-011", "title": "Fresh Lemonade", "category": "Drinks", "price": 349, "description": "Freshly squeezed lemonade"},
+    {"id": "rest-012", "title": "Iced Coffee", "category": "Drinks", "price": 449, "description": "Cold brew coffee with cream"}
+  ]
+}

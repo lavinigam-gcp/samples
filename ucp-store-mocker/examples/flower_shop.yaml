@@ -1,0 +1,112 @@
+# Bloom & Grow Florist - UCP Mock Store Configuration
+# Flower shop with same-day delivery and gift cards
+
+store:
+  name: "Bloom & Grow Florist"
+  type: flower_shop
+  location:
+    address:
+      street: "789 Garden Lane"
+      city: "Portland"
+      state: "OR"
+      postal_code: "97201"
+      country: "US"
+
+server:
+  port: 8085
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+    webhooks:
+      enabled: true
+  fulfillment:
+    enabled: true
+    methods:
+      - type: shipping
+        options:
+          - id: standard
+            title: "Standard Delivery"
+            price: 999
+            delivery_days: [2, 3]
+          - id: same_day
+            title: "Same Day Delivery"
+            price: 1999
+            delivery_days: [0, 0]
+      - type: pickup
+        options:
+          - id: pickup
+            title: "Store Pickup"
+            price: 0
+    free_shipping:
+      enabled: true
+      threshold: 7500
+  discount:
+    enabled: true
+    codes:
+      - code: "BLOOM15"
+        type: percentage
+        value: 15
+      - code: "SPRING"
+        type: percentage
+        value: 10
+  gift_cards:
+    enabled: true
+    denominations: [2500, 5000, 7500, 10000]
+
+catalog:
+  generation:
+    strategy: hybrid
+    count: 40
+    seed: 555
+  variations:
+    enabled: true
+    category_variations:
+      "Bouquets":
+        - type: size
+          options: ["Standard", "Deluxe", "Premium"]
+          price_multipliers: [1.0, 1.5, 2.0]
+      "Arrangements":
+        - type: size
+          options: ["Small", "Medium", "Large"]
+          price_multipliers: [1.0, 1.5, 2.0]
+        - type: vase
+          options: ["Standard", "Premium Glass"]
+          price_adjustments: [0, 1500]
+  categories:
+    - name: "Bouquets"
+      count: 15
+      price_range: [2999, 12999]
+    - name: "Arrangements"
+      count: 10
+      price_range: [4999, 19999]
+    - name: "Plants"
+      count: 10
+      price_range: [1999, 7999]
+    - name: "Gifts"
+      count: 8
+      price_range: [999, 4999]
+
+inventory:
+  strategy: realistic
+  default_quantity: 30
+  variance: 0.4
+  out_of_stock_percentage: 8
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "Bloom & Grow Assistant"
+    description: "AI florist assistant for flower arrangements and gifts"
+    skills:
+      - id: product_search
+        description: "Find flowers, arrangements, and gifts"
+      - id: checkout
+        description: "Complete flower orders"
+      - id: recommendations
+        description: "Suggest flowers for occasions"

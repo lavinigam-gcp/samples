@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {"name": "Fresh Produce", "icon": "🥬"},
+    {"name": "Dairy & Eggs", "icon": "🥛"},
+    {"name": "Bakery", "icon": "🍞"},
+    {"name": "Snacks", "icon": "🍿"},
+    {"name": "Beverages", "icon": "🥤"}
+  ],
+  "sample_products": [
+    {"id": "prod-001", "title": "Organic Bananas", "category": "Fresh Produce", "price": 199, "unit": "bunch"},
+    {"id": "prod-002", "title": "Fresh Strawberries", "category": "Fresh Produce", "price": 499, "unit": "16oz"},
+    {"id": "prod-003", "title": "Avocados", "category": "Fresh Produce", "price": 149, "unit": "each"},
+    {"id": "prod-004", "title": "Baby Spinach", "category": "Fresh Produce", "price": 399, "unit": "5oz"},
+    {"id": "prod-005", "title": "Roma Tomatoes", "category": "Fresh Produce", "price": 249, "unit": "lb"},
+    {"id": "prod-006", "title": "Whole Milk", "category": "Dairy & Eggs", "price": 449, "unit": "gallon"},
+    {"id": "prod-007", "title": "Large Eggs", "category": "Dairy & Eggs", "price": 399, "unit": "dozen"},
+    {"id": "prod-008", "title": "Greek Yogurt", "category": "Dairy & Eggs", "price": 599, "unit": "32oz"},
+    {"id": "prod-009", "title": "Cheddar Cheese", "category": "Dairy & Eggs", "price": 549, "unit": "8oz"},
+    {"id": "prod-010", "title": "Butter", "category": "Dairy & Eggs", "price": 499, "unit": "16oz"},
+    {"id": "prod-011", "title": "Sourdough Bread", "category": "Bakery", "price": 549, "unit": "loaf"},
+    {"id": "prod-012", "title": "Croissants", "category": "Bakery", "price": 499, "unit": "4pk"},
+    {"id": "prod-013", "title": "Bagels", "category": "Bakery", "price": 399, "unit": "6pk"},
+    {"id": "prod-014", "title": "Tortilla Chips", "category": "Snacks", "price": 349, "unit": "13oz"},
+    {"id": "prod-015", "title": "Mixed Nuts", "category": "Snacks", "price": 799, "unit": "16oz"},
+    {"id": "prod-016", "title": "Orange Juice", "category": "Beverages", "price": 499, "unit": "52oz"},
+    {"id": "prod-017", "title": "Sparkling Water", "category": "Beverages", "price": 599, "unit": "12pk"},
+    {"id": "prod-018", "title": "Coffee Beans", "category": "Beverages", "price": 1299, "unit": "12oz"}
+  ]
+}

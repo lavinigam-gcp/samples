@@ -1,0 +1,18 @@
+{
+  "categories": [
+    {"name": "Basic Plans", "icon": "⭐"},
+    {"name": "Premium Plans", "icon": "💎"},
+    {"name": "Enterprise Plans", "icon": "🏢"},
+    {"name": "Add-ons", "icon": "➕"}
+  ],
+  "sample_products": [
+    {"id": "sub-001", "title": "Starter Plan", "category": "Basic Plans", "price": 499, "billing": "monthly", "features": ["5 projects", "Basic support", "1GB storage"]},
+    {"id": "sub-002", "title": "Basic Plan", "category": "Basic Plans", "price": 999, "billing": "monthly", "features": ["15 projects", "Email support", "5GB storage"]},
+    {"id": "sub-003", "title": "Pro Plan", "category": "Premium Plans", "price": 1999, "billing": "monthly", "features": ["Unlimited projects", "Priority support", "50GB storage", "Advanced analytics"]},
+    {"id": "sub-004", "title": "Team Plan", "category": "Premium Plans", "price": 2999, "billing": "monthly", "features": ["Unlimited projects", "Priority support", "100GB storage", "Team collaboration", "API access"]},
+    {"id": "sub-005", "title": "Enterprise Plan", "category": "Enterprise Plans", "price": 7999, "billing": "monthly", "features": ["Custom solutions", "Dedicated support", "Unlimited storage", "SLA", "Custom integrations"]},
+    {"id": "sub-006", "title": "Extra Storage 50GB", "category": "Add-ons", "price": 499, "billing": "monthly"},
+    {"id": "sub-007", "title": "API Access", "category": "Add-ons", "price": 999, "billing": "monthly"},
+    {"id": "sub-008", "title": "Priority Support", "category": "Add-ons", "price": 299, "billing": "monthly"}
+  ]
+}

@@ -1,0 +1,100 @@
+# Urban Kitchen - UCP Mock Store Configuration
+# Restaurant/food delivery with size variations
+
+store:
+  name: "Urban Kitchen"
+  type: restaurant
+  location:
+    address:
+      street: "42 Food Court Lane"
+      city: "Chicago"
+      state: "IL"
+      postal_code: "60601"
+      country: "US"
+
+server:
+  port: 8083
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+    webhooks:
+      enabled: true
+  fulfillment:
+    enabled: true
+    methods:
+      - type: shipping
+        options:
+          - id: delivery
+            title: "Delivery"
+            price: 399
+            delivery_days: [0, 0]
+      - type: pickup
+        options:
+          - id: pickup
+            title: "Pickup"
+            price: 0
+    free_shipping:
+      enabled: true
+      threshold: 2500
+  discount:
+    enabled: true
+    codes:
+      - code: "HUNGRY20"
+        type: percentage
+        value: 20
+      - code: "FIRSTORDER"
+        type: fixed
+        value: 500
+
+catalog:
+  generation:
+    strategy: template
+    count: 45
+    seed: 789
+  variations:
+    enabled: true
+    category_variations:
+      "Entrees":
+        - type: size
+          options: ["Regular", "Large"]
+          price_adjustments: [0, 400]
+        - type: protein
+          options: ["Chicken", "Beef", "Tofu"]
+          price_adjustments: [0, 200, 0]
+      "Drinks":
+        - type: size
+          options: ["Small", "Medium", "Large"]
+          price_adjustments: [0, 100, 200]
+  categories:
+    - name: "Appetizers"
+      count: 8
+      price_range: [599, 1299]
+    - name: "Entrees"
+      count: 15
+      price_range: [1199, 2999]
+    - name: "Sides"
+      count: 8
+      price_range: [299, 799]
+    - name: "Desserts"
+      count: 6
+      price_range: [499, 999]
+    - name: "Drinks"
+      count: 10
+      price_range: [199, 599]
+
+inventory:
+  strategy: unlimited
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "Urban Kitchen Assistant"
+    skills:
+      - id: product_search
+      - id: checkout

@@ -1,0 +1,135 @@
+# Cymbal Grocery - UCP Mock Store Configuration
+# A full-featured grocery store with delivery and pickup options
+
+store:
+  name: "Cymbal Grocery"
+  type: grocery
+  location:
+    address:
+      street: "123 Main Street"
+      city: "San Francisco"
+      state: "CA"
+      postal_code: "94102"
+      country: "US"
+    coordinates:
+      latitude: 37.7749
+      longitude: -122.4194
+
+server:
+  port: 8080
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+    webhooks:
+      enabled: true
+  fulfillment:
+    enabled: true
+    methods:
+      - type: shipping
+        options:
+          - id: standard
+            title: "Standard Delivery"
+            price: 599
+            delivery_days: [3, 5]
+          - id: express
+            title: "Express Delivery"
+            price: 999
+            delivery_days: [1, 2]
+      - type: pickup
+        options:
+          - id: curbside
+            title: "Curbside Pickup"
+            price: 0
+          - id: instore
+            title: "In-Store Pickup"
+            price: 0
+    free_shipping:
+      enabled: true
+      threshold: 3500  # $35.00
+  discount:
+    enabled: true
+    codes:
+      - code: "SAVE10"
+        type: percentage
+        value: 10
+      - code: "WELCOME"
+        type: percentage
+        value: 15
+      - code: "FREESHIP"
+        type: fixed
+        value: 599
+  buyer_consent:
+    enabled: true
+
+payment:
+  handlers:
+    - id: mock_payment
+      name: "dev.ucp.mock_payment"
+      enabled: true
+    - id: google_pay
+      name: "google.pay"
+      enabled: true
+
+catalog:
+  generation:
+    strategy: hybrid
+    count: 50
+    seed: 42
+  images:
+    generate: false
+    model: "gemini-2.5-flash-image"
+    style: "product-photography"
+    resolution: "1024x1024"
+  variations:
+    enabled: true
+    category_variations:
+      "Fresh Produce":
+        - type: weight
+          options: ["1 lb", "2 lb", "5 lb"]
+          price_multipliers: [1.0, 1.9, 4.5]
+  categories:
+    - name: "Fresh Produce"
+      count: 15
+      price_range: [99, 999]
+    - name: "Dairy & Eggs"
+      count: 10
+      price_range: [199, 899]
+    - name: "Bakery"
+      count: 8
+      price_range: [299, 1299]
+    - name: "Snacks"
+      count: 12
+      price_range: [199, 799]
+    - name: "Beverages"
+      count: 10
+      price_range: [149, 599]
+
+inventory:
+  strategy: realistic
+  default_quantity: 100
+  variance: 0.3
+  low_stock_percentage: 10
+  out_of_stock_percentage: 5
+  category_overrides:
+    "Fresh Produce":
+      default_quantity: 50
+      variance: 0.5
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "Cymbal Grocery Agent"
+    description: "AI shopping assistant for Cymbal Grocery"
+    skills:
+      - id: product_search
+        description: "Search for grocery products"
+      - id: checkout
+        description: "Manage cart and checkout"
+      - id: order_status
+        description: "Check order status"

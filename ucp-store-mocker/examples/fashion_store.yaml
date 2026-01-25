@@ -1,0 +1,109 @@
+# Chic Boutique - UCP Mock Store Configuration
+# Fashion store with size/color variations and wishlist support
+
+store:
+  name: "Chic Boutique"
+  type: fashion
+  location:
+    address:
+      street: "200 Fashion Avenue"
+      city: "New York"
+      state: "NY"
+      postal_code: "10001"
+      country: "US"
+
+server:
+  port: 8082
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+  fulfillment:
+    enabled: true
+    methods:
+      - type: shipping
+        options:
+          - id: standard
+            title: "Standard Shipping"
+            price: 599
+            delivery_days: [5, 7]
+          - id: express
+            title: "Express Shipping"
+            price: 1299
+            delivery_days: [2, 3]
+    free_shipping:
+      enabled: true
+      threshold: 7500
+  discount:
+    enabled: true
+    codes:
+      - code: "STYLE15"
+        type: percentage
+        value: 15
+  wishlist:
+    enabled: true
+  returns:
+    enabled: true
+    return_window_days: 60
+
+catalog:
+  generation:
+    strategy: hybrid
+    count: 50
+    seed: 456
+  variations:
+    enabled: true
+    category_variations:
+      "Mens Clothing":
+        - type: size
+          options: ["XS", "S", "M", "L", "XL", "XXL"]
+          affects_price: false
+        - type: color
+          options: ["Black", "White", "Navy", "Gray"]
+          affects_price: false
+      "Womens Clothing":
+        - type: size
+          options: ["XS", "S", "M", "L", "XL"]
+          affects_price: false
+        - type: color
+          options: ["Black", "White", "Red", "Navy", "Blush"]
+          affects_price: false
+      "Shoes":
+        - type: size
+          options: ["6", "7", "8", "9", "10", "11", "12"]
+          affects_price: false
+        - type: color
+          options: ["Black", "Brown", "White"]
+          affects_price: false
+  categories:
+    - name: "Mens Clothing"
+      count: 15
+      price_range: [1999, 14999]
+    - name: "Womens Clothing"
+      count: 15
+      price_range: [1999, 19999]
+    - name: "Shoes"
+      count: 12
+      price_range: [4999, 24999]
+    - name: "Accessories"
+      count: 10
+      price_range: [999, 9999]
+
+inventory:
+  strategy: realistic
+  default_quantity: 50
+  variance: 0.4
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "Chic Boutique Stylist"
+    skills:
+      - id: product_search
+      - id: checkout
+      - id: recommendations

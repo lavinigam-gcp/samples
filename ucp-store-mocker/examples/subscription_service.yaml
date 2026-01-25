@@ -1,0 +1,79 @@
+# CloudSync Pro - UCP Mock Store Configuration
+# SaaS subscription service
+
+store:
+  name: "CloudSync Pro"
+  type: subscription
+  location:
+    address:
+      street: "1 Cloud Way"
+      city: "Seattle"
+      state: "WA"
+      postal_code: "98101"
+      country: "US"
+
+server:
+  port: 8084
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+  fulfillment:
+    enabled: false
+  discount:
+    enabled: true
+    codes:
+      - code: "ANNUAL20"
+        type: percentage
+        value: 20
+      - code: "STARTUP50"
+        type: percentage
+        value: 50
+  subscriptions:
+    enabled: true
+
+catalog:
+  generation:
+    strategy: template
+    count: 12
+    seed: 321
+  variations:
+    enabled: true
+    category_variations:
+      "Basic Plans":
+        - type: billing
+          options: ["Monthly", "Yearly"]
+          price_multipliers: [1.0, 10.0]
+      "Premium Plans":
+        - type: billing
+          options: ["Monthly", "Yearly"]
+          price_multipliers: [1.0, 10.0]
+  categories:
+    - name: "Basic Plans"
+      count: 3
+      price_range: [499, 999]
+    - name: "Premium Plans"
+      count: 3
+      price_range: [1499, 2999]
+    - name: "Enterprise Plans"
+      count: 2
+      price_range: [4999, 9999]
+    - name: "Add-ons"
+      count: 5
+      price_range: [199, 999]
+
+inventory:
+  strategy: unlimited
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "CloudSync Sales Agent"
+    skills:
+      - id: product_search
+      - id: checkout

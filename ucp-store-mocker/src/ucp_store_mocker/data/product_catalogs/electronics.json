@@ -1,0 +1,26 @@
+{
+  "categories": [
+    {"name": "Smartphones", "icon": "📱"},
+    {"name": "Laptops", "icon": "💻"},
+    {"name": "Accessories", "icon": "🎧"},
+    {"name": "Gaming", "icon": "🎮"},
+    {"name": "Audio", "icon": "🔊"}
+  ],
+  "sample_products": [
+    {"id": "elec-001", "title": "Galaxy Pro Max", "category": "Smartphones", "price": 99900, "brand": "TechCorp"},
+    {"id": "elec-002", "title": "Pixel Ultra", "category": "Smartphones", "price": 89900, "brand": "SmartTech"},
+    {"id": "elec-003", "title": "Nova Phone SE", "category": "Smartphones", "price": 49900, "brand": "MobileX"},
+    {"id": "elec-004", "title": "UltraBook Pro 15", "category": "Laptops", "price": 149900, "brand": "CompuMax"},
+    {"id": "elec-005", "title": "ThinkPad X1", "category": "Laptops", "price": 179900, "brand": "TechBook"},
+    {"id": "elec-006", "title": "MacStyle Air", "category": "Laptops", "price": 129900, "brand": "LaptopPro"},
+    {"id": "elec-007", "title": "Wireless Earbuds Pro", "category": "Audio", "price": 19900, "brand": "SoundWave"},
+    {"id": "elec-008", "title": "Studio Headphones", "category": "Audio", "price": 34900, "brand": "AudioMax"},
+    {"id": "elec-009", "title": "Bluetooth Speaker", "category": "Audio", "price": 9900, "brand": "SonicElite"},
+    {"id": "elec-010", "title": "Gaming Controller Pro", "category": "Gaming", "price": 6999, "brand": "GamePro"},
+    {"id": "elec-011", "title": "RGB Mechanical Keyboard", "category": "Gaming", "price": 14999, "brand": "RazerX"},
+    {"id": "elec-012", "title": "Gaming Mouse Elite", "category": "Gaming", "price": 7999, "brand": "LogiGame"},
+    {"id": "elec-013", "title": "USB-C Hub", "category": "Accessories", "price": 4999, "brand": "TechGear"},
+    {"id": "elec-014", "title": "Wireless Charger", "category": "Accessories", "price": 2999, "brand": "ChargePro"},
+    {"id": "elec-015", "title": "Phone Case Premium", "category": "Accessories", "price": 2499, "brand": "CaseCraft"}
+  ]
+}

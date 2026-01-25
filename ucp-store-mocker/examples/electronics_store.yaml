@@ -1,0 +1,122 @@
+# TechMart Electronics - UCP Mock Store Configuration
+# Electronics store with product variations and returns support
+
+store:
+  name: "TechMart Electronics"
+  type: electronics
+  location:
+    address:
+      street: "500 Tech Boulevard"
+      city: "Palo Alto"
+      state: "CA"
+      postal_code: "94301"
+      country: "US"
+
+server:
+  port: 8081
+  transport:
+    rest: true
+    a2a: true
+
+capabilities:
+  checkout:
+    enabled: true
+  order:
+    enabled: true
+    webhooks:
+      enabled: true
+  fulfillment:
+    enabled: true
+    methods:
+      - type: shipping
+        options:
+          - id: standard
+            title: "Free Standard Shipping"
+            price: 0
+            delivery_days: [5, 7]
+          - id: express
+            title: "Express Shipping"
+            price: 1499
+            delivery_days: [2, 3]
+          - id: overnight
+            title: "Overnight Delivery"
+            price: 2999
+            delivery_days: [1, 1]
+    free_shipping:
+      enabled: true
+      threshold: 5000
+  discount:
+    enabled: true
+    codes:
+      - code: "TECH20"
+        type: percentage
+        value: 20
+      - code: "NEWUSER"
+        type: fixed
+        value: 2500
+  returns:
+    enabled: true
+    return_window_days: 30
+  reviews:
+    enabled: true
+    allow_anonymous: false
+
+payment:
+  handlers:
+    - id: mock_payment
+      name: "dev.ucp.mock_payment"
+      enabled: true
+
+catalog:
+  generation:
+    strategy: hybrid
+    count: 40
+    seed: 123
+  variations:
+    enabled: true
+    category_variations:
+      "Smartphones":
+        - type: storage
+          options: ["64GB", "128GB", "256GB", "512GB"]
+          price_adjustments: [0, 10000, 20000, 40000]
+        - type: color
+          options: ["Space Gray", "Silver", "Gold"]
+          affects_price: false
+      "Laptops":
+        - type: storage
+          options: ["256GB", "512GB", "1TB"]
+          price_adjustments: [0, 20000, 50000]
+        - type: ram
+          options: ["8GB", "16GB", "32GB"]
+          price_adjustments: [0, 20000, 50000]
+  categories:
+    - name: "Smartphones"
+      count: 10
+      price_range: [29900, 129900]
+    - name: "Laptops"
+      count: 8
+      price_range: [49900, 249900]
+    - name: "Accessories"
+      count: 15
+      price_range: [999, 9999]
+    - name: "Gaming"
+      count: 10
+      price_range: [1999, 59900]
+    - name: "Audio"
+      count: 8
+      price_range: [2999, 34900]
+
+inventory:
+  strategy: realistic
+  default_quantity: 25
+  variance: 0.3
+  out_of_stock_percentage: 3
+
+a2a:
+  enabled: true
+  agent_card:
+    name: "TechMart Assistant"
+    skills:
+      - id: product_search
+      - id: checkout
+      - id: recommendations

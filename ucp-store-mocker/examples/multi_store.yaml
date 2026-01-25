@@ -1,0 +1,36 @@
+# Multi-Store Orchestration Configuration
+# Generate and run multiple UCP mock stores together
+
+registry:
+  port: 9000
+  discovery_endpoint: "/.well-known/stores"
+
+stores:
+  - name: "cymbal-grocery"
+    config_file: "grocery_store.yaml"
+    port: 8080
+
+  - name: "techmart"
+    config_file: "electronics_store.yaml"
+    port: 8081
+
+  - name: "chic-boutique"
+    config_file: "fashion_store.yaml"
+    port: 8082
+
+  - name: "urban-kitchen"
+    config_file: "restaurant.yaml"
+    port: 8083
+
+# Alternative: inline configuration
+#  - name: "quick-store"
+#    port: 8090
+#    config:
+#      store:
+#        name: "Quick Store"
+#        type: grocery
+#      server:
+#        port: 8090
+#      catalog:
+#        generation:
+#          count: 20

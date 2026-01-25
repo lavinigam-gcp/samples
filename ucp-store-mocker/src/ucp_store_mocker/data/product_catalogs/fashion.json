@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {"name": "Mens Clothing", "icon": "👔"},
+    {"name": "Womens Clothing", "icon": "👗"},
+    {"name": "Shoes", "icon": "👟"},
+    {"name": "Accessories", "icon": "👜"}
+  ],
+  "sample_products": [
+    {"id": "fash-001", "title": "Classic Cotton T-Shirt", "category": "Mens Clothing", "price": 2999, "brand": "StyleCo"},
+    {"id": "fash-002", "title": "Slim Fit Chinos", "category": "Mens Clothing", "price": 6999, "brand": "UrbanWear"},
+    {"id": "fash-003", "title": "Oxford Button-Down", "category": "Mens Clothing", "price": 5999, "brand": "ClassicMan"},
+    {"id": "fash-004", "title": "Floral Maxi Dress", "category": "Womens Clothing", "price": 8999, "brand": "Elegance"},
+    {"id": "fash-005", "title": "High-Waist Jeans", "category": "Womens Clothing", "price": 7999, "brand": "ChicStyle"},
+    {"id": "fash-006", "title": "Silk Blouse", "category": "Womens Clothing", "price": 9999, "brand": "Elegance"},
+    {"id": "fash-007", "title": "Leather Ankle Boots", "category": "Shoes", "price": 15999, "brand": "FootStyle"},
+    {"id": "fash-008", "title": "Running Sneakers", "category": "Shoes", "price": 12999, "brand": "StepUp"},
+    {"id": "fash-009", "title": "Classic Loafers", "category": "Shoes", "price": 11999, "brand": "SoleMate"},
+    {"id": "fash-010", "title": "Leather Crossbody Bag", "category": "Accessories", "price": 7999, "brand": "BagCraft"},
+    {"id": "fash-011", "title": "Silk Scarf", "category": "Accessories", "price": 4999, "brand": "AccessoryCo"},
+    {"id": "fash-012", "title": "Classic Watch", "category": "Accessories", "price": 14999, "brand": "StylePlus"}
+  ]
+}

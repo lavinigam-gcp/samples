@@ -1,0 +1,18 @@
+{
+  "quality_prefixes": ["Premium", "Organic", "Fresh", "Artisan", "Classic", "Modern", "Professional"],
+  "size_options": {
+    "clothing": ["XS", "S", "M", "L", "XL", "XXL"],
+    "shoes": ["6", "7", "8", "9", "10", "11", "12", "13"],
+    "drinks": ["Small", "Medium", "Large", "Extra Large"],
+    "food": ["Regular", "Large", "Family Size"]
+  },
+  "color_options": {
+    "neutral": ["Black", "White", "Gray", "Navy", "Beige"],
+    "vibrant": ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"],
+    "tech": ["Space Gray", "Silver", "Gold", "Rose Gold", "Midnight"]
+  },
+  "material_options": {
+    "clothing": ["Cotton", "Polyester", "Wool", "Linen", "Silk"],
+    "accessories": ["Leather", "Canvas", "Nylon", "Metal"]
+  }
+}
