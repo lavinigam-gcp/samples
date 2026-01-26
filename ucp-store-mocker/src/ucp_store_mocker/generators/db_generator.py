@@ -29,6 +29,9 @@ class DatabaseGenerator:
 
         if self.config.capabilities.fulfillment.enabled:
             tables.append(self._shipping_rates_table())
+            tables.append(self._customers_table())
+            tables.append(self._customer_addresses_table())
+            tables.append(self._promotions_table())
 
         if self.config.capabilities.order.enabled:
             tables.append(self._orders_table())
@@ -92,13 +95,17 @@ CREATE TABLE IF NOT EXISTS inventory (
 CREATE TABLE IF NOT EXISTS checkouts (
     id TEXT PRIMARY KEY,
     buyer_id TEXT,
-    status TEXT DEFAULT 'active',
+    buyer_data TEXT,
+    status TEXT DEFAULT 'incomplete',
     subtotal INTEGER DEFAULT 0,
     total INTEGER DEFAULT 0,
     currency TEXT DEFAULT 'USD',
     fulfillment_method TEXT,
     fulfillment_price INTEGER DEFAULT 0,
     fulfillment_address TEXT,
+    payment_handler_id TEXT,
+    payment_instrument TEXT,
+    fulfillment_data TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -144,6 +151,7 @@ CREATE TABLE IF NOT EXISTS discounts (
     code TEXT PRIMARY KEY,
     type TEXT NOT NULL,
     value INTEGER NOT NULL,
+    description TEXT,
     active BOOLEAN DEFAULT 1,
     min_purchase INTEGER DEFAULT 0,
     max_uses INTEGER,
@@ -157,12 +165,61 @@ CREATE TABLE IF NOT EXISTS discounts (
 CREATE TABLE IF NOT EXISTS shipping_rates (
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
-    type TEXT NOT NULL,
+    type TEXT DEFAULT 'shipping',
     price INTEGER NOT NULL,
+    country_code TEXT DEFAULT 'default',
+    service_level TEXT DEFAULT 'standard',
     delivery_days_min INTEGER DEFAULT 0,
     delivery_days_max INTEGER DEFAULT 0,
     active BOOLEAN DEFAULT 1
+);
+
+CREATE INDEX IF NOT EXISTS idx_shipping_rates_country ON shipping_rates(country_code);"""
+
+    def _promotions_table(self) -> str:
+        """Generate promotions table for free shipping rules."""
+        return """-- Promotions table
+CREATE TABLE IF NOT EXISTS promotions (
+    id TEXT PRIMARY KEY,
+    type TEXT NOT NULL,
+    min_subtotal INTEGER,
+    eligible_item_ids TEXT,
+    description TEXT,
+    active BOOLEAN DEFAULT 1
 );"""
+
+    def _customers_table(self) -> str:
+        """Generate customers table for known customer lookup."""
+        return """-- Customers table
+CREATE TABLE IF NOT EXISTS customers (
+    id TEXT PRIMARY KEY,
+    email TEXT UNIQUE,
+    name TEXT,
+    full_name TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_customers_email ON customers(email);"""
+
+    def _customer_addresses_table(self) -> str:
+        """Generate customer addresses table for address injection."""
+        return """-- Customer Addresses table
+CREATE TABLE IF NOT EXISTS customer_addresses (
+    id TEXT PRIMARY KEY,
+    customer_id TEXT NOT NULL,
+    street_address TEXT,
+    address_locality TEXT,
+    city TEXT,
+    address_region TEXT,
+    state TEXT,
+    postal_code TEXT,
+    address_country TEXT DEFAULT 'US',
+    country TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_customer_addresses_customer ON customer_addresses(customer_id);"""
 
     def _orders_table(self) -> str:
         """Generate orders table."""
@@ -177,6 +234,8 @@ CREATE TABLE IF NOT EXISTS orders (
     currency TEXT DEFAULT 'USD',
     fulfillment_method TEXT,
     fulfillment_status TEXT DEFAULT 'pending',
+    fulfillment_data TEXT,
+    adjustments TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (checkout_id) REFERENCES checkouts(id)
@@ -394,6 +453,10 @@ def import_csv_to_table(db_path: Path, csv_path: Path, table_name: str):
 
 def main():
     """Import all CSV files."""
+    # Initialize database first (creates tables)
+    from server.db import init_db
+    init_db()
+
     project_root = Path(__file__).parent.parent.parent.parent
     db_path = project_root / "databases" / "store.db"
     data_path = project_root / "data"
@@ -404,6 +467,9 @@ def main():
         ("inventory.csv", "inventory"),
         ("discounts.csv", "discounts"),
         ("shipping_rates.csv", "shipping_rates"),
+        ("customers.csv", "customers"),
+        ("addresses.csv", "customer_addresses"),
+        ("promotions.csv", "promotions"),
     ]
 
     for csv_file, table_name in mappings:

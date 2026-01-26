@@ -3,3 +3,6 @@
 .ruff_cache
 uv.lock
 .venv
+
+# Local documentation and notes
+.docs/
