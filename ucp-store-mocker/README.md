@@ -11,10 +11,14 @@ A CLI tool for generating UCP-compliant mock stores for developer enablement. Qu
 
 ```bash
 # Clone the repository
-git clone https://github.com/anthropics/ucp-samples.git
-cd ucp-samples/ucp-store-mocker
+git clone https://github.com/Universal-Commerce-Protocol/samples.git ucp-samples
+cd ucp-samples
 
-# Install dependencies
+# Checkout the feature branch (until merged to main)
+git checkout feature/ucp-store-mocker
+
+# Navigate to store mocker and install dependencies
+cd ucp-store-mocker
 uv sync
 
 # Initialize a grocery store configuration
@@ -316,10 +320,10 @@ The UCP conformance test suite validates protocol compliance. The tests are in a
 #### Step 1: Clone the Conformance Tests
 
 ```bash
-# Clone the conformance test repository (sibling to ucp-store-mocker)
-cd ..  # Go to parent directory
-git clone https://github.com/anthropics/ucp-conformance.git conformance
-cd conformance
+# Clone the conformance test repository (sibling to ucp-samples)
+cd ../..  # Go to parent of ucp-samples
+git clone https://github.com/Universal-Commerce-Protocol/conformance.git ucp-conformance
+cd ucp-conformance
 uv sync
 ```
 
@@ -328,14 +332,14 @@ uv sync
 In a separate terminal:
 
 ```bash
-cd ucp-store-mocker/.generated_stores/my-store
+cd ucp-samples/ucp-store-mocker/.generated_stores/my-store
 SIMULATION_SECRET=test_secret uv run python -m server
 ```
 
 #### Step 3: Run the Tests
 
 ```bash
-cd conformance
+cd ucp-conformance
 
 # Run all test suites
 uv run checkout_lifecycle_test.py --server_url=http://localhost:8080
@@ -354,7 +358,7 @@ uv run webhook_test.py \
 # Use store-specific test data for accurate results
 uv run fulfillment_test.py \
   --server_url=http://localhost:8080 \
-  --conformance_input=../ucp-store-mocker/.generated_stores/my-store/data/conformance_input.json
+  --conformance_input=../ucp-samples/ucp-store-mocker/.generated_stores/my-store/data/conformance_input.json
 ```
 
 #### Quick Test Script
@@ -362,7 +366,7 @@ uv run fulfillment_test.py \
 Run all tests with a single command:
 
 ```bash
-# From the conformance directory
+# From the ucp-conformance directory
 for test in checkout_lifecycle_test.py business_logic_test.py validation_test.py \
             fulfillment_test.py order_test.py protocol_test.py idempotency_test.py; do
   echo "Running $test..."
@@ -804,10 +808,14 @@ See the `examples/` directory for complete configuration examples:
 
 ```bash
 # Clone the samples repository
-git clone https://github.com/anthropics/ucp-samples.git
-cd ucp-samples/ucp-store-mocker
+git clone https://github.com/Universal-Commerce-Protocol/samples.git ucp-samples
+cd ucp-samples
 
-# Create virtual environment and install dependencies
+# Checkout the feature branch (until merged to main)
+git checkout feature/ucp-store-mocker
+
+# Navigate to store mocker and install dependencies
+cd ucp-store-mocker
 uv sync
 
 # Verify installation
