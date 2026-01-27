@@ -2,14 +2,26 @@
 
 A CLI tool for generating UCP-compliant mock stores for developer enablement. Quickly spin up realistic commerce stores for testing UCP integrations with ADK, A2A, and AP2.
 
+## Prerequisites
+
+- **Python 3.11+** (3.12 or 3.14 recommended)
+- **uv** - Fast Python package manager ([install guide](https://docs.astral.sh/uv/getting-started/installation/))
+
 ## Quick Start
 
 ```bash
+# Clone the repository
+git clone https://github.com/anthropics/ucp-samples.git
+cd ucp-samples/ucp-store-mocker
+
+# Install dependencies
+uv sync
+
 # Initialize a grocery store configuration
-uvx ucp-store-mocker init grocery --name "My Grocery" -o config.yaml
+uv run ucp-store-mocker init grocery --name "My Grocery" -o config.yaml
 
 # Generate the store
-uvx ucp-store-mocker generate-store config.yaml -o ./my-store
+uv run ucp-store-mocker generate-store config.yaml -o ./my-store --force
 
 # Run the store
 cd my-store
@@ -17,13 +29,35 @@ uv sync
 uv run python -m server
 ```
 
+### Verify Your Store
+
+Once the server is running, verify the endpoints:
+
+```bash
+# Check UCP discovery endpoint
+curl http://localhost:8080/.well-known/ucp | jq .
+
+# Check A2A agent card (if A2A enabled)
+curl http://localhost:8080/.well-known/agent.json | jq .
+
+# Create a test checkout
+curl -X POST http://localhost:8080/checkout \
+  -H "Content-Type: application/json" \
+  -d '{"line_items": [{"product_id": "conformance_test_item", "quantity": 1}]}'
+```
+
 ## Installation
 
 ```bash
-# Install with pip
+# For local development (recommended)
+cd ucp-store-mocker
+uv sync
+uv run ucp-store-mocker --help
+
+# Or install globally with pip (if published to PyPI)
 pip install ucp-store-mocker
 
-# Or run directly with uvx
+# Or run directly with uvx (if published to PyPI)
 uvx ucp-store-mocker --help
 ```
 
@@ -277,12 +311,33 @@ curl -X POST http://localhost:8080/checkout \
 
 ### Run Conformance Tests
 
-The UCP conformance test suite validates protocol compliance. Run all tests:
+The UCP conformance test suite validates protocol compliance. The tests are in a separate repository.
+
+#### Step 1: Clone the Conformance Tests
 
 ```bash
-cd /path/to/ucp-work/conformance
+# Clone the conformance test repository (sibling to ucp-store-mocker)
+cd ..  # Go to parent directory
+git clone https://github.com/anthropics/ucp-conformance.git conformance
+cd conformance
+uv sync
+```
 
-# Run individual test suites
+#### Step 2: Start Your Generated Store
+
+In a separate terminal:
+
+```bash
+cd ucp-store-mocker/.generated_stores/my-store
+SIMULATION_SECRET=test_secret uv run python -m server
+```
+
+#### Step 3: Run the Tests
+
+```bash
+cd conformance
+
+# Run all test suites
 uv run checkout_lifecycle_test.py --server_url=http://localhost:8080
 uv run business_logic_test.py --server_url=http://localhost:8080
 uv run validation_test.py --server_url=http://localhost:8080
@@ -290,16 +345,32 @@ uv run fulfillment_test.py --server_url=http://localhost:8080
 uv run order_test.py --server_url=http://localhost:8080
 uv run protocol_test.py --server_url=http://localhost:8080
 uv run idempotency_test.py --server_url=http://localhost:8080
-uv run webhook_test.py --server_url=http://localhost:8080
 
-# For webhook tests, you need to set the simulation secret
-SIMULATION_SECRET=test_secret uv run python -m server  # Start server with secret
-uv run webhook_test.py --server_url=http://localhost:8080 --simulation_secret=test_secret
+# Webhook tests require simulation secret
+uv run webhook_test.py \
+  --server_url=http://localhost:8080 \
+  --simulation_secret=test_secret
 
-# Use store-specific test data
+# Use store-specific test data for accurate results
 uv run fulfillment_test.py \
   --server_url=http://localhost:8080 \
-  --conformance_input=/path/to/store/data/conformance_input.json
+  --conformance_input=../ucp-store-mocker/.generated_stores/my-store/data/conformance_input.json
+```
+
+#### Quick Test Script
+
+Run all tests with a single command:
+
+```bash
+# From the conformance directory
+for test in checkout_lifecycle_test.py business_logic_test.py validation_test.py \
+            fulfillment_test.py order_test.py protocol_test.py idempotency_test.py; do
+  echo "Running $test..."
+  uv run $test --server_url=http://localhost:8080
+done
+
+# Run webhook tests separately (requires simulation secret)
+uv run webhook_test.py --server_url=http://localhost:8080 --simulation_secret=test_secret
 ```
 
 ---
@@ -729,17 +800,66 @@ See the `examples/` directory for complete configuration examples:
 
 ## Development
 
+### Local Setup
+
 ```bash
-# Clone and install
-git clone https://github.com/anthropics/ucp.git
-cd samples/ucp-store-mocker
+# Clone the samples repository
+git clone https://github.com/anthropics/ucp-samples.git
+cd ucp-samples/ucp-store-mocker
+
+# Create virtual environment and install dependencies
 uv sync
 
-# Run tests
+# Verify installation
+uv run ucp-store-mocker --help
+```
+
+### Running Tests
+
+```bash
+# Run unit tests
 uv run pytest
 
-# Run locally
-uv run ucp-store-mocker --help
+# Run with coverage
+uv run pytest --cov=ucp_store_mocker
+```
+
+### Using Examples
+
+Generate stores from the provided example configurations:
+
+```bash
+# Generate an electronics store
+uv run ucp-store-mocker generate-store examples/electronics_store.yaml \
+  -o .generated_stores/electronics --force
+
+# Generate a fashion store
+uv run ucp-store-mocker generate-store examples/fashion_store.yaml \
+  -o .generated_stores/fashion --force
+
+# Run the generated store
+cd .generated_stores/electronics
+uv sync
+uv run python -m server
+```
+
+### Project Structure
+
+```
+ucp-store-mocker/
+├── src/ucp_store_mocker/
+│   ├── cli.py                 # CLI entry point
+│   ├── config/                # Configuration schema and parsing
+│   └── generators/            # Code generators
+│       ├── store_generator.py    # Main orchestrator
+│       ├── server_generator.py   # FastAPI server generation
+│       ├── data_generator.py     # Product/inventory data
+│       ├── profile_generator.py  # UCP discovery profile
+│       ├── a2a_generator.py      # A2A agent generation
+│       └── db_generator.py       # Database initialization
+├── examples/                  # Example store configurations
+├── tests/                     # Unit tests
+└── .generated_stores/         # Generated stores (gitignored)
 ```
 
 ## License
