@@ -106,6 +106,10 @@ if __name__ == "__main__":
             routes_imports.append("from server.routes.order import router as order_router")
             routes_includes.append('app.include_router(order_router, prefix="/orders", tags=["Orders"])')
 
+        if self.config.a2a.enabled:
+            routes_imports.append("from server.a2a.agent import router as a2a_router")
+            routes_includes.append('app.include_router(a2a_router, tags=["A2A"])')
+
         imports_str = "\n".join(routes_imports)
         includes_str = "\n".join(routes_includes)
 
